@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL = "https://eclectic-sweeps.000webhostapp.com/login.php";
+    private static final String LOGIN_REQUEST_URL = "https://eclectic-sweeps.000webhostapp.com/login_enc.php";
     private Map<String, String> params;
 
     public LoginRequest(String username, String password, Response.Listener<String> listener) {
