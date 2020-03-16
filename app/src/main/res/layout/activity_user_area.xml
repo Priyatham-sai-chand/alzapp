@@ -5,12 +5,114 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient2">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="USER INFO"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="161dp"/>
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="sans-serif"
+            android:text="USER INFO"
+            android:textColor="#FFF"
+            android:textSize="30sp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:text="Fill your details in this survey"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
+
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Martial Status"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <RadioGroup
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioMartialStatus"
+            android:layout_marginLeft="10dp"
+            >
+
+        </RadioGroup>
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="3.33"
+            android:text="Yes"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="3.33"
+            android:text=" No"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+    </ScrollView>
+
+
 </RelativeLayout>
+
+
+
+

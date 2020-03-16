@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:text="Register to save your progress and  get detailed report"
+            android:text="Register to save your progress and get detailed report"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
