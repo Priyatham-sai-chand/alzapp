@@ -17,11 +17,16 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import android.widget.Toast;
-import android.view.View;
+
 import android.view.ViewGroup;
 import android.view.Gravity;
+import org.json.*;
+import java.lang.*;
+import com.android.volley.*;
+import com.android.volley.toolbox.*;
+import android.app.AlertDialog;
 /*******
  Created on: 21/01/2020
 
@@ -33,7 +38,7 @@ import android.view.Gravity;
 public class registration extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView signin;
     private TextView dob;
-    com.example.alzapp.DatabaseHelper dal;
+
     SQLiteDatabase sqLiteDatabase;
     private RadioGroup radioSexGroup;
     private RadioButton radioSexButton;
@@ -50,8 +55,8 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        dal = new DatabaseHelper(registration.this);
-        username = (EditText) findViewById(R.id.reg_useername);
+
+        username = (EditText) findViewById(R.id.reg_username);
         password = (EditText) findViewById(R.id.reg_password);
         firstname = (EditText) findViewById(R.id.firstname);
         lastname = (EditText) findViewById(R.id.lastname);
@@ -83,9 +88,34 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
                 else {
 
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
+                                    Intent intent = new Intent(registration.this,login.class);
+                                    startActivity(intent);
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(registration.this);
+                                    builder.setMessage("Register Failed")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    Registerequest reg_request = new Registerequest(firstname.getText().toString(),lastname.getText().toString(),username.getText().toString(),dob.getText().toString(),email_id.getText().toString(),password.getText().toString(),responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(registration.this);
+                    queue.add(reg_request);
 
 
-                    insertData();
+
+
 
                 }
             }
@@ -151,15 +181,15 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
                 radioSexButton = (RadioButton) findViewById(selectedId);
 
                 if(radioSexButton.getText() == "Male"){
-                    sex = 0;
+                    sex = 1;
                 }
                 else if (radioSexButton.getText() == "Female"){
 
-                    sex = 1;
+                    sex = 2;
                 }
                 else{
 
-                    sex = -1;
+                    sex = 3;
                 }
 
 
@@ -168,12 +198,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
 
     }
-    public void insertData(){
 
-        dal.insertData(username.getText().toString(),lastname.getText().toString(),firstname.getText().toString(),lastname.getText().toString(),dob.getText().toString(),email_id.getText().toString(),sex);
-
-
-    }
     public boolean isEmpty(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
@@ -195,5 +220,9 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
         toast.show();
     }
+
+
+
+
 
 }
