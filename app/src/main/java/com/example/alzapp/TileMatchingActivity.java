@@ -22,8 +22,6 @@ import java.util.Collections;
  By: Rishab Kulkarni & Shaik Idrisulla
 
 
- Breaking bad.
-
  ********/
 
 public class TileMatchingActivity extends AppCompatActivity {
