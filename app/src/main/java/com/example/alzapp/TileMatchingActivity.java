@@ -34,7 +34,7 @@ public class TileMatchingActivity extends AppCompatActivity {
 
     Integer[] cardsArray={101,102,103,104,105,106,107,108,201,202,203,204,205,206,207,208};
 
-    int img101,img102,img103,img104,img105,img106,img107,img108,
+       int  img101,img102,img103,img104,img105,img106,img107,img108,
             img201,img202,img203,img204,img205,img206,img207,img208,
             firstCard,secondCard,clickedFirst,clickedSecond,cardNumber=1,playerMoves=0;
 

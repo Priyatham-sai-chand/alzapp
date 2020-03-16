@@ -15,18 +15,5 @@ public class UserAreaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
 
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-
-
-        TextView tvWelcomeMsg = (TextView) findViewById(R.id.tvWelcomeMsg);
-        EditText etUsername = (EditText) findViewById(R.id.etUsername);
-
-
-        // Display user details
-        String message = username + " welcome to your user area";
-        tvWelcomeMsg.setText(message);
-        etUsername.setText(username);
-
     }
 }
