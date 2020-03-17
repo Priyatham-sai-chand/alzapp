@@ -108,7 +108,6 @@
             android:ems="10"
             android:hint="Date of birth"
             android:labelFor="@id/dob1"
-
             android:visibility="visible" />
 
 

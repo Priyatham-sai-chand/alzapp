@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_gradient2">
 
     <ScrollView
@@ -32,15 +33,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif"
-            android:text="Fill your details in this survey"
+            android:text="Please take a few minutes to fill out this survey"
             android:textColor="#fff"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textAlignment="center"/>
 
         <EditText
             android:id="@+id/first_name"
             android:layout_width="300dp"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
@@ -51,10 +52,11 @@
             android:singleLine="true"
             android:visibility="visible" />
 
+
         <EditText
             android:id="@+id/last_name"
             android:layout_width="300dp"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
@@ -66,44 +68,416 @@
             android:visibility="visible" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
-            android:text="Martial Status"
-            android:textSize="20sp"
+            android:ems="10"
+            android:hint="Age(in years)"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
             android:visibility="visible" />
 
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Martial Status"
+            android:textSize="17sp" />
+
         <RadioGroup
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioMartialStatus"
-            android:layout_marginLeft="10dp"
-            >
+            android:id="@+id/martialStatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+
+            <RadioButton
+                android:id="@+id/radioButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Married"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unmarried"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preferred not to say"
+                android:layout_weight="3.33" />
 
         </RadioGroup>
 
-        <RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
             android:layout_marginTop="20dp"
-            android:layout_weight="3.33"
-            android:text="Yes"
-            android:textSize="20sp"
-            android:visibility="visible" />
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Medical history?"
+            android:textSize="17sp" />
+
+        <RadioGroup
+                android:id="@+id/medicalHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp">
+
+            <RadioButton
+                android:id="@+id/radioButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:layout_weight="3.33" />
+
+        </RadioGroup>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:hint="If yes, then please specify"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Feeling down, depressed or lonely?"
+            android:textSize="17sp" />
+
+
+        <RadioGroup
+            android:id="@+id/depression"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+            <RadioButton
+                android:id="@+id/radioButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not at all"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All the time"
+                android:layout_weight="3.33" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Having a poor appetite?"
+            android:textSize="17sp" />
+
+
+
+        <RadioGroup
+            android:id="@+id/concentration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+            <RadioButton
+                android:id="@+id/radioButton13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:layout_weight="3.33" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Having trouble concentrating on things?"
+            android:textSize="17sp" />
+
+        <RadioGroup
+            android:id="@+id/poorAppetite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+            <RadioButton
+                android:id="@+id/radioButton15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not at all"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For several days"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More than half the days"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nearly every day"
+                android:layout_weight="3.33" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Having trouble in making decisions?"
+            android:textSize="17sp" />
+
+        <RadioGroup
+            android:id="@+id/decisionMaking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+            <RadioButton
+                android:id="@+id/radioButton27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not at all"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All the time"
+                android:layout_weight="3.33" />
+
+
+
+        </RadioGroup>
+
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Forgetting about things lately?"
+            android:textSize="17sp" />
+
+        <RadioGroup
+            android:id="@+id/forgettingThings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
 
         <RadioButton
-            android:id="@+id/radioButton7"
+            android:id="@+id/radioButton19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="3.33"
-            android:text=" No"
-            android:textSize="20sp"
+            android:text="Not at all"
+            android:layout_weight="3.33" />
+
+        <RadioButton
+            android:id="@+id/radioButton20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Somewhat"
+            android:layout_weight="3.33" />
+
+        <RadioButton
+            android:id="@+id/radioButton21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All the time"
+            android:layout_weight="3.33" />
+
+        </RadioGroup>
+
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Trouble falling or staying asleep?"
+            android:textSize="17sp" />
+
+        <RadioGroup
+            android:id="@+id/notFallingAsleep"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+            <RadioButton
+                android:id="@+id/radioButton22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not at all"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Somewhat"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All the time"
+                android:layout_weight="3.33" />
+
+        </RadioGroup>
+
+
+        <EditText
+            android:id="@+id/occupationName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:hint="Enter your current occupation?"
+            android:inputType="text"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
             android:visibility="visible" />
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="30dp"
+            android:text="Does your current occupation cause you anxiety (mental stress)?"
+            android:textSize="17sp" />
+
+        <RadioGroup
+            android:id="@+id/occupationTrouble"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp">
+
+
+            <RadioButton
+                android:id="@+id/radioButton25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:layout_weight="3.33" />
+
+            <RadioButton
+                android:id="@+id/radioButton26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:layout_weight="3.33" />
+
+
+        </RadioGroup>
+
+
+
+
+        <Button
+            android:id="@+id/submitUserInfo"
+            android:background="@drawable/box_design"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:text="SUBMIT"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+
+
 
     </LinearLayout>
 
