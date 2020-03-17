@@ -38,7 +38,9 @@
             android:text="Register to save your progress and get detailed report"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:autofillHints="username"
+            />
 
         <EditText
             android:id="@+id/reg_username"
@@ -52,7 +54,9 @@
             android:inputType="textPersonName"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:autofillHints="username"
+            />
 
         <EditText
             android:id="@+id/reg_password"
@@ -63,16 +67,18 @@
             android:layout_marginEnd="30dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:autofillHints="password"
+            />
 
         <EditText
             android:id="@+id/firstname"
             android:layout_width="300dp"
             android:layout_height="42dp"
-
+            android:autofillHints="username"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
@@ -95,7 +101,9 @@
             android:inputType="textPersonName"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:autofillHints="username"
+            />
 
         <TextView
             android:id="@+id/dob1"
@@ -108,7 +116,9 @@
             android:ems="10"
             android:hint="Date of birth"
             android:labelFor="@id/dob1"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:text="@string/Dob"
+            />
 
 
 
@@ -121,7 +131,9 @@
             android:layout_marginEnd="30dp"
             android:ems="10"
             android:hint="E-Mail ID"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:autofillHints="email"
+            />
 
 
         <LinearLayout
@@ -143,7 +155,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.33"
                     android:text="Male"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:onClick="checkButton"
+                    />
 
                 <RadioButton
                     android:id="@+id/radioButton4"
@@ -151,7 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.33"
                     android:text="Female"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:onClick="checkButton"/>
 
                 <RadioButton
                     android:id="@+id/radioButton5"
@@ -159,7 +174,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.33"
                     android:text="Others"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:onClick="checkButton"
+                    />
 
             </RadioGroup>
 
@@ -167,7 +184,7 @@
                 android:id="@+id/input_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginBottom="132dp"
@@ -191,8 +208,10 @@
             android:text="Already Have an Account?  Sign in"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:textSize="13dp"
-            android:textStyle="bold" />
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:focusable="true"
+            />
 
         <Button
             android:id="@+id/signup_button"
@@ -200,7 +219,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/button"
-            android:foreground="?android:attr/selectableItemBackground"
+
             android:text="SIGN UP"
             android:textAllCaps="false"
             android:textColor="#ff9966"

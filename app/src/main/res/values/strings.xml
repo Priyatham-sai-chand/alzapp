@@ -4,5 +4,14 @@
     <string name="alz">alz.</string>
     <string name="never_forget">never forget</string>
     <string name="login">login</string>
+    <string name="SIGN_UP">SIGN_UP</string>
+    <string name="reg_banner">Register to save your progress and get detailed report</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="First_name">First name</string>
+    <string name="Last_name">Last name</string>
+    <string name="Dob">Date of Birth</string>
+
+
 
 </resources>

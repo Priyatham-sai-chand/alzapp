@@ -49,22 +49,23 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
     private EditText email_id;
     private Button signup;
     private Button signup_button;
-    int sex;
+    String gender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
 
-        username = (EditText) findViewById(R.id.reg_username);
-        password = (EditText) findViewById(R.id.reg_password);
-        firstname = (EditText) findViewById(R.id.firstname);
-        lastname = (EditText) findViewById(R.id.lastname);
-        email_id = (EditText) findViewById(R.id.email_id);
-        signup = (Button) findViewById(R.id.signup_button);
-        signin = (TextView) findViewById(R.id.signIn_text);
-        dob = (TextView) findViewById(R.id.dob1);
-        signup_button = (Button) findViewById(R.id.signup_button);
+        username = findViewById(R.id.reg_username);
+        password = findViewById(R.id.reg_password);
+        firstname = findViewById(R.id.firstname);
+        lastname = findViewById(R.id.lastname);
+        email_id = findViewById(R.id.email_id);
+        signup = findViewById(R.id.signup_button);
+        signin = findViewById(R.id.signIn_text);
+        dob = findViewById(R.id.dob1);
+
+        radioSexGroup =  findViewById(R.id.radioSex);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +74,36 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
 
         });
+
+
+
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+
+            }
+        });
+
+        Button back = (Button) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+        // get selected radio button from radioGroup
+        int selectedId = radioSexGroup.getCheckedRadioButtonId();
+
+        //find the radiobutton by returned id
+        radioSexButton = (RadioButton) findViewById(selectedId);
+
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +126,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
                                 JSONObject jsonResponse = new JSONObject(response);
                                 boolean success = jsonResponse.getBoolean("success");
                                 if (success) {
-                                    Intent intent = new Intent(registration.this,login.class);
+                                    Intent intent = new Intent(registration.this,UserAreaActivity.class);
                                     startActivity(intent);
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(registration.this);
@@ -109,7 +140,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
                             }
                         }
                     };
-                    Registerequest reg_request = new Registerequest(firstname.getText().toString(),lastname.getText().toString(),username.getText().toString(),dob.getText().toString(),email_id.getText().toString(),password.getText().toString(),responseListener);
+                    Registerequest reg_request = new Registerequest(firstname.getText().toString(),lastname.getText().toString(),username.getText().toString(),dob.getText().toString(),email_id.getText().toString(),password.getText().toString(),radioSexButton.getText().toString(),responseListener);
                     RequestQueue queue = Volley.newRequestQueue(registration.this);
                     queue.add(reg_request);
 
@@ -118,23 +149,6 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
 
                 }
-            }
-        });
-        dob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-
-            }
-        });
-
-        Button back = (Button) findViewById(R.id.back);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
             }
         });
 
@@ -165,45 +179,24 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
     }
 
-    public void addListenerOnButton() {
 
-        radioSexGroup = (RadioGroup) findViewById(R.id.radioSex);
+    public void checkButton(View v) {
+        int radioId = radioSexGroup.getCheckedRadioButtonId();
 
-
-
-
-
-
-                // get selected radio button from radioGroup
-                int selectedId = radioSexGroup.getCheckedRadioButtonId();
-
-                //find the radiobutton by returned id
-                radioSexButton = (RadioButton) findViewById(selectedId);
-
-                if(radioSexButton.getText() == "Male"){
-                    sex = 1;
-                }
-                else if (radioSexButton.getText() == "Female"){
-
-                    sex = 2;
-                }
-                else{
-
-                    sex = 3;
-                }
-
-
-
-
+        radioSexButton = findViewById(radioId);
 
 
     }
+
+
+
+
 
     public boolean isEmpty(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
 
-    public void showToast() {
+    /*public void showToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toast_root));
 
@@ -219,7 +212,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
         toast.setView(layout);
 
         toast.show();
-    }
+    }*/
 
 
 
