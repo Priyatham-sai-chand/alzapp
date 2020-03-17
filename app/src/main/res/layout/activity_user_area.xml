@@ -476,6 +476,19 @@
             android:visibility="visible"
             tools:visibility="visible" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="sans-serif"
+            android:text="The information provided in the above survey will be kept confidential and not be disclosed to anyone under any circumstances."
+            android:textColor="#000"
+            android:textSize="13sp"
+            android:textAlignment="center"/>
+
+
+
 
 
 
