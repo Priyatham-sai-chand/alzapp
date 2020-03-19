@@ -1,13 +1,10 @@
 package com.example.alzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 /*******
  Created on: 21/01/2020
 
@@ -17,7 +14,7 @@ import android.widget.TextView;
  ********/
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private TextView welcome;
     @Override
@@ -29,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 
 

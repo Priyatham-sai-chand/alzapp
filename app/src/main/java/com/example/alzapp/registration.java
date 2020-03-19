@@ -1,32 +1,36 @@
 package com.example.alzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import androidx.fragment.app.DialogFragment;
-import android.widget.DatePicker;
-import android.widget.RadioButton;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import java.text.DateFormat;
-import java.util.Calendar;
-import android.view.LayoutInflater;
-import android.widget.ImageView;
-
+import android.widget.TextView;
 import android.widget.Toast;
 
-import android.view.ViewGroup;
-import android.view.Gravity;
-import org.json.*;
-import java.lang.*;
-import com.android.volley.*;
-import com.android.volley.toolbox.*;
-import android.app.AlertDialog;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 /*******
  Created on: 21/01/2020
 
@@ -38,8 +42,6 @@ import android.app.AlertDialog;
 public class registration extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView signin;
     private TextView dob;
-
-    SQLiteDatabase sqLiteDatabase;
     private RadioGroup radioSexGroup;
     private RadioButton radioSexButton;
     private EditText username;
@@ -48,8 +50,8 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
     private EditText lastname;
     private EditText email_id;
     private Button signup;
-    private Button signup_button;
-    String gender;
+     String ages;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +89,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-        Button back = (Button) findViewById(R.id.back);
+        Button back =  findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +103,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
         int selectedId = radioSexGroup.getCheckedRadioButtonId();
 
         //find the radiobutton by returned id
-        radioSexButton = (RadioButton) findViewById(selectedId);
+        radioSexButton = findViewById(selectedId);
 
 
 
@@ -160,14 +162,19 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        String currentDateString = DateFormat.getDateInstance(DateFormat.DEFAULT).format(c.getTime());
+        LocalDate l1 = LocalDate.of(year, month, dayOfMonth);
 
-        TextView textView = (TextView) findViewById(R.id.dob1);
-        textView.setText(currentDateString);
+        age(currentDateString,l1);
+
+
+
+
     }
 
     public void openActivity() {
@@ -187,6 +194,37 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
 
     }
+    public void age(String s,LocalDate l1)
+    {
+        try {
+
+
+            DateFormat originalFormat = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+            DateFormat targetFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+            Date date = originalFormat.parse(s);
+            if (date != null) {
+                String formattedDate = targetFormat.format(date);
+            }
+
+            LocalDate now1 = LocalDate.now();
+            Period diff1 = Period.between(l1, now1);
+            int age = diff1.getYears();
+            ages = String.valueOf(age);
+
+
+
+
+
+        }
+        catch(ParseException e)
+        {
+            e.printStackTrace();
+
+        }
+
+
+    }
+
 
 
 
