@@ -10,7 +10,7 @@ public class Registerequest extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "https://eclectic-sweeps.000webhostapp.com/registration_enc.php";
     private Map<String, String> params;
 
-    public Registerequest(String firstname, String lastname,String username,String dob,String email,String password,String gender, Response.Listener<String> listener) {
+    Registerequest(String firstname, String lastname, String username, String dob, String email, String password, String gender, int age, Response.Listener<String> listener) {
         super(Method.POST, REGISTER_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("username", username);
@@ -20,6 +20,7 @@ public class Registerequest extends StringRequest {
         params.put("dob",dob);
         params.put("email",email);
         params.put("gender",gender);
+        params.put("age",age+"");
 
     }
 

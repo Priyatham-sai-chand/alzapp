@@ -3,6 +3,8 @@ package com.example.alzapp;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,9 +30,9 @@ import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 /*******
  Created on: 21/01/2020
 
@@ -39,7 +41,7 @@ import androidx.fragment.app.DialogFragment;
 
  ********/
 
-public class registration extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class registration extends AppCompatActivity {
     private TextView signin;
     private TextView dob;
     private RadioGroup radioSexGroup;
@@ -50,7 +52,10 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
     private EditText lastname;
     private EditText email_id;
     private Button signup;
-     String ages;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+     int age;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +88,39 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        registration.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+
+                    Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.show();
+
+
 
             }
         });
 
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+
+                String s = day + " " +month + " " + year;
+                LocalDate l1 = LocalDate.of(year, month, day);
+                age(s,l1);
+
+
+
+            }
+        };
         Button back =  findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +174,7 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
                             }
                         }
                     };
-                    Registerequest reg_request = new Registerequest(firstname.getText().toString(),lastname.getText().toString(),username.getText().toString(),dob.getText().toString(),email_id.getText().toString(),password.getText().toString(),radioSexButton.getText().toString(),responseListener);
+                    Registerequest reg_request = new Registerequest(firstname.getText().toString(),lastname.getText().toString(),username.getText().toString(),dob.getText().toString(),email_id.getText().toString(),password.getText().toString(),radioSexButton.getText().toString(),age,responseListener);
                     RequestQueue queue = Volley.newRequestQueue(registration.this);
                     queue.add(reg_request);
 
@@ -158,24 +190,10 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
 
 
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.DEFAULT).format(c.getTime());
-        LocalDate l1 = LocalDate.of(year, month, dayOfMonth);
-
-        age(currentDateString,l1);
-
-
-
 
     }
+
+
 
     public void openActivity() {
 
@@ -185,6 +203,8 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
 
 
     }
+
+
 
 
     public void checkButton(View v) {
@@ -199,17 +219,20 @@ public class registration extends AppCompatActivity implements DatePickerDialog.
         try {
 
 
-            DateFormat originalFormat = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+            DateFormat originalFormat = new SimpleDateFormat("dd MM yyyy", Locale.US);
             DateFormat targetFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
             Date date = originalFormat.parse(s);
-            if (date != null) {
+            if(date != null) {
                 String formattedDate = targetFormat.format(date);
             }
 
             LocalDate now1 = LocalDate.now();
             Period diff1 = Period.between(l1, now1);
-            int age = diff1.getYears();
-            ages = String.valueOf(age);
+            age = diff1.getYears();
+            String ages = String.valueOf(age);
+            TextView textView = findViewById(R.id.dob1);
+            textView.setText(s);
+
 
 
 
