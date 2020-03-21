@@ -21,9 +21,7 @@
         tools:visibility="visible" />
 
 
-    <include layout="@layout/backbutton"
-        />
-
+    <include layout="@layout/backbutton" />
 
     <TextView
         android:id="@+id/textView"

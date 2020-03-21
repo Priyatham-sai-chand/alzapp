@@ -14,14 +14,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -131,10 +128,8 @@ public class registration extends AppCompatActivity {
         });
 
 
-        // get selected radio button from radioGroup
-        int selectedId = radioSexGroup.getCheckedRadioButtonId();
 
-        //find the radiobutton by returned id
+        int selectedId = radioSexGroup.getCheckedRadioButtonId();
         radioSexButton = findViewById(selectedId);
 
 

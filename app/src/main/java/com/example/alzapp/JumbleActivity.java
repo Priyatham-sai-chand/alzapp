@@ -1,20 +1,18 @@
 package com.example.alzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Bundle;
-
-import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.zip.Inflater;
-import java.util.zip.Inflater.*;
+import java.util.concurrent.TimeUnit;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /*******
  Created on: 21/01/2020
@@ -25,7 +23,7 @@ import java.util.zip.Inflater.*;
  ********/
 
 
-public class JumbleActivity extends AppCompatActivity implements View.OnClickListener{
+public class JumbleActivity extends AppCompatActivity {
 
     private TextView wordTv;
     private EditText wordEnteredTv;
@@ -33,6 +31,14 @@ public class JumbleActivity extends AppCompatActivity implements View.OnClickLis
     private String wordToFind;
     private int score = 0;
     private TextView score_dis;
+    private TextView timer;
+    private Chronometer chronometer;
+    private long pauseOffset;
+    private boolean running;
+    private Button pauser;
+    private Button resumer;
+    private long elapsedMillis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,21 +46,22 @@ public class JumbleActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-            score_dis = (TextView) findViewById(R.id.score);
-            wordTv = (TextView) findViewById(R.id.wordTv);
-            wordEnteredTv = (EditText) findViewById(R.id.wordEnteredTv);
-            validate = (Button) findViewById(R.id.validate);
-            validate.setOnClickListener(this);
-            newGame = (Button) findViewById(R.id.newGame);
+            pauser =  findViewById(R.id.pause);
+            resumer = findViewById(R.id.resume);
+            timer = findViewById(R.id.time);
+            score_dis = findViewById(R.id.score);
+            wordTv = findViewById(R.id.wordTv);
+            wordEnteredTv =findViewById(R.id.wordEnteredTv);
+            validate = findViewById(R.id.validate);
+            newGame = findViewById(R.id.newGame);
             newGame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    reset();
-                    score_dis.setText("Score : " + score);
+                    newGame();
                 }
             });
 
-            newGame();
+
 
             Button back = (Button) findViewById(R.id.back);
 
@@ -65,21 +72,51 @@ public class JumbleActivity extends AppCompatActivity implements View.OnClickLis
                 }
             });
 
+            validate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                     validate();
+                }
+            });
 
-        }
+        chronometer = findViewById(R.id.chronometer);
+        chronometer.setFormat("Time: %s");
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        newGame();
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                if (score == 15) {
+                    elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                    long minutes = TimeUnit.MILLISECONDS.toMinutes(elapsedMillis);
+                    long seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);
+                    timer.setText("time : " + minutes + ":" + seconds);
 
-        @Override
-        public void onClick(View view) {
-            if (view == validate) {
+                    Intent intent = new Intent(JumbleActivity.this,QuickPlayMenu.class);
+                    startActivity(intent);
 
-                validate();
-            } else if (view == newGame) {
-                score = 0;
-                newGame();
-
-
+                }
             }
+        });
+
+        pauser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pauseChronometer();
+            }
+        });
+
+        resumer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startChronometer();
+            }
+        });
+
+
         }
+
+
 
         private void validate() {
             String w = wordEnteredTv.getText().toString();
@@ -102,7 +139,7 @@ public class JumbleActivity extends AppCompatActivity implements View.OnClickLis
             String wordShuffled = Jumble.shuffleWord(wordToFind);
             wordTv.setText(wordShuffled);
             wordEnteredTv.setText("");
-
+            startChronometer();
 
 
         }
@@ -110,13 +147,39 @@ public class JumbleActivity extends AppCompatActivity implements View.OnClickLis
 
             score = 0;
             newGame();
+            resetChronometer();
 
         }
 
 
-
-
-
-
+    public void startChronometer() {
+        if (!running) {
+            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+            chronometer.start();
+            running = true;
+        }
     }
+
+    public void pauseChronometer() {
+        if (running) {
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+            running = false;
+        }
+    }
+
+    public void resetChronometer() {
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        pauseOffset = 0;
+    }
+
+
+
+
+
+
+
+
+
+}
 
