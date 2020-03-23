@@ -79,6 +79,8 @@ public class JumbleActivity extends AppCompatActivity {
                 }
             });
 
+        Intent intent = getIntent();
+        elapsedMillis = intent.getLongExtra("jumble_elapsed_millis", 0);
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("Time: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
@@ -92,8 +94,12 @@ public class JumbleActivity extends AppCompatActivity {
                     long seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);
                     timer.setText("time : " + minutes + ":" + seconds);
 
-                    Intent intent = new Intent(JumbleActivity.this,QuickPlayMenu.class);
-                    startActivity(intent);
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("jumble_elapsed_millis", elapsedMillis);
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+
+
 
                 }
             }
@@ -112,6 +118,7 @@ public class JumbleActivity extends AppCompatActivity {
                 startChronometer();
             }
         });
+
 
 
         }

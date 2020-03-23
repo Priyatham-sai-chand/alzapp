@@ -2,10 +2,8 @@ package com.example.alzapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,9 +21,8 @@ public class QuickPlayMenu extends AppCompatActivity {
     private Button tilematch;
     private Button game3;
     private Button game4;
-    private Chronometer chronometer;
-    private long pauseOffset;
-    private boolean running;
+    private long jumble_elapsed_millis = 0;
+
 
 
     @Override
@@ -33,14 +30,16 @@ public class QuickPlayMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_play_menu);
 
+
         jumble = (Button) findViewById(R.id.jumble);
         tilematch = (Button) findViewById(R.id.tilematch);
 
         jumble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuickPlayMenu.this,JumbleActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(QuickPlayMenu.this, JumbleActivity.class);
+                intent.putExtra("jumble_elapsed_millis", jumble_elapsed_millis);
+                startActivityForResult(intent, 1);
 
             }
         });
@@ -65,12 +64,23 @@ public class QuickPlayMenu extends AppCompatActivity {
 
 
 
+
     }
-    public void startChronometer(View v) {
-        if (!running) {
-            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
-            chronometer.start();
-            running = true;
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+               jumble_elapsed_millis = data.getLongExtra("jumble_elapsed_millis", 0);
+
+
+
+            }
+            if (resultCode == RESULT_CANCELED) {
+
+
+            }
         }
     }
+
 }
