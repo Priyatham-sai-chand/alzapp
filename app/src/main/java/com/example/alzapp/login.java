@@ -1,17 +1,21 @@
 package com.example.alzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.EditText;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import org.json.*;
-import java.lang.*;
-import com.android.volley.*;
-import com.android.volley.toolbox.*;
-import android.app.AlertDialog;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
 /*******
  Created on: 21/01/2020
 
@@ -21,6 +25,7 @@ import android.app.AlertDialog;
  ********/
 
 public class login extends AppCompatActivity {
+    public static final  String EXTRA_TEXT = "com.example.alzapp.EXTRA_TEXT";
     private TextView signup;
     private Button signin;
     @Override
@@ -73,11 +78,13 @@ public class login extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-                                String username1 = jsonResponse.getString("username");
+                                String username = jsonResponse.getString("username");
 
 
-                                Intent intent = new Intent(login.this, UserAreaActivity.class);
-                                intent.putExtra("name", username1);
+                                Intent intent = new Intent(login.this, QuickPlayMenu.class);
+                                intent.putExtra(EXTRA_TEXT, username);
+                                startActivity(intent);
+
 
 
                                 login.this.startActivity(intent);
