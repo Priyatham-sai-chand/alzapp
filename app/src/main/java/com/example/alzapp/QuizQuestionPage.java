@@ -50,6 +50,8 @@ public class QuizQuestionPage extends AppCompatActivity {
         rb3 = findViewById(R.id.radioButton32);
         buttonConfirmNext = findViewById(R.id.quiz_confirm_next);
 
+        textColorDefaultRb = rb1.getTextColors();
+
         QuizDbHelper dbHelper = new QuizDbHelper(this);
         questionList = dbHelper.getAllQuestions();
         questionCountTotal = questionList.size();
@@ -80,7 +82,17 @@ public class QuizQuestionPage extends AppCompatActivity {
             }
 
             else {
-             finish();
+             finishQuiz();
             }
     }
+
+    private void finishQuiz(){
+        finish();
+    }
+
+
+
+
+
+
 }
