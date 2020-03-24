@@ -88,7 +88,7 @@ public class JumbleActivity extends AppCompatActivity {
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                if (score == 15) {
+                if (score == 5) {
                     elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
                     long minutes = TimeUnit.MILLISECONDS.toMinutes(elapsedMillis);
                     long seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);

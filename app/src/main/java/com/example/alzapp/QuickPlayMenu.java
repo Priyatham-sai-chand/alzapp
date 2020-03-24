@@ -47,7 +47,7 @@ public class QuickPlayMenu extends AppCompatActivity {
         Intent intent = getIntent();
        username = intent.getStringExtra(login.EXTRA_TEXT);
        username_text = findViewById(R.id.username);
-       username_text.setText("username : "+ username);
+       username_text.setText("username : "+ username + " " + jumble_elapsed_millis);
 
         jumble.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,33 +77,7 @@ public class QuickPlayMenu extends AppCompatActivity {
             }
         });
 
-        if(jumble_elapsed_millis != 0) {
 
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean("success");
-                        if (success) {
-                            Intent intent = new Intent(QuickPlayMenu.this, UserAreaActivity.class);
-                            startActivity(intent);
-                        } else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(QuickPlayMenu.this);
-                            builder.setMessage("Register Failed")
-                                    .setNegativeButton("Retry", null)
-                                    .create()
-                                    .show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-            JumbleSender jumble_sender = new JumbleSender(username, jumble_elapsed_millis, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(QuickPlayMenu.this);
-            queue.add(jumble_sender);
-        }
 
 
 
@@ -115,7 +89,35 @@ public class QuickPlayMenu extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                jumble_elapsed_millis = data.getLongExtra("jumble_elapsed_millis", 0);
+                username_text.setText("username : "+ username + " " + jumble_elapsed_millis);
 
+                if(jumble_elapsed_millis != 0) {
+
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
+                                    Intent intent = new Intent(QuickPlayMenu.this, UserAreaActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(QuickPlayMenu.this);
+                                    builder.setMessage("game time save Failed")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    JumbleSender jumble_sender = new JumbleSender(username, jumble_elapsed_millis, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(QuickPlayMenu.this);
+                    queue.add(jumble_sender);
+                }
 
 
             }
