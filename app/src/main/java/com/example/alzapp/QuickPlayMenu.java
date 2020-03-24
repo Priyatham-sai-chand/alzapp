@@ -74,7 +74,7 @@ public class QuickPlayMenu extends AppCompatActivity {
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuickPlayMenu.this,QuizQuestionPage.class);
+                Intent intent = new Intent(QuickPlayMenu.this,QuickQuizStart.class);
                 startActivity(intent);
 
             }

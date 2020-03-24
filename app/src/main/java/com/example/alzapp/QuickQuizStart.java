@@ -7,26 +7,22 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class QuizStartingPage extends AppCompatActivity {
+public class QuickQuizStart extends AppCompatActivity {
 
-
-    private Button quizStart;
-
+    private Button quiz_start;
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_question_page);
+        setContentView(R.layout.activity_quick_quiz_start);
 
-        quizStart = (Button) findViewById(R.id.start_quiz);
-        quizStart.setOnClickListener(new View.OnClickListener() {
+        quiz_start = findViewById(R.id.start_quiz);
+        quiz_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuizStartingPage.this, QuizQuestionPage.class);
+                Intent intent = new Intent(QuickQuizStart.this,QuizQuestionPage.class);
                 startActivity(intent);
             }
         });
+
     }
-
-
 }
