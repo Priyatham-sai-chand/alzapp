@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_gradient2"
+    >
+
+    <TextView
+        android:id="@+id/quiz_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCORE : 0"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/quiz_question_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QUESTIONS : 1/x"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_below="@+id/quiz_score" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:30"
+        android:layout_alignParentRight="true"
+        android:textColor="@android:color/black"
+        android:textSize="35sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"/>
+
+
+
+    <TextView
+        android:id="@+id/quiz_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Here will be the question text \nHere will be the question text \nHere will be the question text"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"
+        android:layout_above="@id/quiz_radio_group"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"/>
+
+    <RadioGroup
+        android:id="@+id/quiz_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp">
+
+        <RadioButton
+            android:id="@+id/radioButton30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 1"
+            android:textSize="22sp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 1"
+            android:textSize="22sp"/>
+
+
+        <RadioButton
+            android:id="@+id/radioButton32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 1"
+            android:textSize="22sp"/>
+
+    </RadioGroup>
+
+
+
+    <Button
+        android:id="@+id/quiz_question_next"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="next"
+        android:background="@drawable/button_menu"
+        android:layout_below="@id/quiz_radio_group"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        />
+
+
+
+
+
+
+
+</RelativeLayout>
