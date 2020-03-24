@@ -18,6 +18,8 @@
         <activity android:name=".JumbleActivity" />
         <activity android:name=".login" />
         <activity android:name=".registration" />
+        <activity android:name=".QuizQuestionPage" />
+        <activity android:name=".QuizStartingPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

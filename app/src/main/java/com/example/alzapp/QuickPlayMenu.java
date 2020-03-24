@@ -44,7 +44,7 @@ public class QuickPlayMenu extends AppCompatActivity {
 
         jumble = findViewById(R.id.jumble);
         tilematch =  findViewById(R.id.tilematch);
-        quiz = (Button) findViewById(R.id.quiz);
+        quiz = findViewById(R.id.quiz);
 
         Intent intent = getIntent();
        username = intent.getStringExtra(login.EXTRA_TEXT);
@@ -74,7 +74,7 @@ public class QuickPlayMenu extends AppCompatActivity {
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuickPlayMenu.this,QuizStartingPage.class);
+                Intent intent = new Intent(QuickPlayMenu.this,QuizQuestionPage.class);
                 startActivity(intent);
 
             }
