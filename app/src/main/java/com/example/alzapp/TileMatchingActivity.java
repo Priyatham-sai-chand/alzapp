@@ -1,20 +1,21 @@
 package com.example.alzapp;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.alzapp.R;
-
 import java.util.Arrays;
 import java.util.Collections;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 /*******
  Created on: 21/01/2020
@@ -31,6 +32,12 @@ public class TileMatchingActivity extends AppCompatActivity {
     ImageView i21,i22,i23,i24;
     ImageView i31,i32,i33,i34;
     ImageView i41,i42,i43,i44;
+    private Chronometer chronometer;
+    private long pauseOffset;
+    private boolean running;
+    private Button pauser;
+    private Button resumer;
+    private long elapsedMillis;
 
     Integer[] cardsArray={101,102,103,104,105,106,107,108,201,202,203,204,205,206,207,208};
 
@@ -45,6 +52,7 @@ public class TileMatchingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_matching);
         counter=(TextView) findViewById(R.id.counter1);
+
 
         i11=(ImageView) findViewById(R.id.i11);
         i12=(ImageView) findViewById(R.id.i12);
@@ -87,6 +95,13 @@ public class TileMatchingActivity extends AppCompatActivity {
         i44.setTag("15");
 
         frontCards();
+
+        chronometer = findViewById(R.id.tile_time);
+        chronometer.setFormat("Time: %s");
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        startChronometer();
+
+
 
         Collections.shuffle(Arrays.asList(cardsArray));
 
@@ -230,6 +245,26 @@ public class TileMatchingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                if (checkEnd()) {
+                    elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                    //long minutes = TimeUnit.MILLISECONDS.toMinutes(elapsedMillis);
+                    //long seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis);
+
+
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("tile_elapsed_millis", elapsedMillis);
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+
+
+
+                }
             }
         });
 
@@ -476,7 +511,7 @@ public class TileMatchingActivity extends AppCompatActivity {
         checkEnd();
     }
 
-    private void checkEnd(){
+    private boolean checkEnd(){
         if(i11.getVisibility()==View.INVISIBLE &&
                 i12.getVisibility()==View.INVISIBLE &&
                 i13.getVisibility()==View.INVISIBLE &&
@@ -503,6 +538,11 @@ public class TileMatchingActivity extends AppCompatActivity {
                             finish();
                         }
                     });
+            return true;
+
+        }
+        else{
+            return false;
 
         }
     }
@@ -524,5 +564,26 @@ public class TileMatchingActivity extends AppCompatActivity {
         img206=R.drawable.zebra;
         img207=R.drawable.chicken;
         img208=R.drawable.cow;
+    }
+
+    public void startChronometer() {
+        if (!running) {
+            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+            chronometer.start();
+            running = true;
+        }
+    }
+
+    public void pauseChronometer() {
+        if (running) {
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+            running = false;
+        }
+    }
+
+    public void resetChronometer() {
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        pauseOffset = 0;
     }
 }

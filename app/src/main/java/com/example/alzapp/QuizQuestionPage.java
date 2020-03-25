@@ -7,10 +7,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Collections;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class QuizQuestionPage extends AppCompatActivity {
 
@@ -55,7 +55,9 @@ public class QuizQuestionPage extends AppCompatActivity {
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
 
-        showNextQuestion();
+        //showNextQuestion();
+
+
 
     }
 

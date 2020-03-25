@@ -43,6 +43,17 @@
         android:text="MOVES= 0"
         android:textSize="20sp"/>
 
+    <Chronometer
+        android:id="@+id/tile_time"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="263dp"
+
+        android:textSize="20sp" />
 
 
 </RelativeLayout>
