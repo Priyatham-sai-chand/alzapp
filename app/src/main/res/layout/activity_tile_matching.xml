@@ -43,6 +43,15 @@
         android:text="MOVES= 0"
         android:textSize="20sp"/>
 
+    <Chronometer
+        android:id="@+id/tileMatching_chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:textSize="24sp"/>
+
+
 
 
 </RelativeLayout>

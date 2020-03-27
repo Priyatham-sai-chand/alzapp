@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,13 +39,17 @@ public class TileMatchingActivity extends AppCompatActivity {
             img201,img202,img203,img204,img205,img206,img207,img208,
             firstCard,secondCard,clickedFirst,clickedSecond,cardNumber=1,playerMoves=0;
 
-
+        private Chronometer chronometer;
+        public boolean running;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_matching);
         counter=(TextView) findViewById(R.id.counter1);
+
+        chronometer = findViewById(R.id.tileMatching_chronometer);
+
 
         i11=(ImageView) findViewById(R.id.i11);
         i12=(ImageView) findViewById(R.id.i12);
@@ -222,8 +227,6 @@ public class TileMatchingActivity extends AppCompatActivity {
 
 
 
-
-
         Button back = (Button) findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -233,8 +236,15 @@ public class TileMatchingActivity extends AppCompatActivity {
             }
         });
 
+        /**  Game timer **/
+        if(!running){
+            chronometer.start();
+            running = true;
+        }
 
     }
+
+
 
     private void doStuff(ImageView img,int card){
         if(cardsArray[card]==101){
@@ -495,9 +505,14 @@ public class TileMatchingActivity extends AppCompatActivity {
                 i44.getVisibility()==View.INVISIBLE
         ){
             AlertDialog.Builder message= new AlertDialog.Builder(TileMatchingActivity.this);
-            message.setMessage("GAME OVER!!\nMOVES= "+counter)
-                    .setCancelable(false)
-                    .setPositiveButton("NEXT", new DialogInterface.OnClickListener() {
+            message.setMessage("GAME OVER!!\nMOVES= "+counter);
+            /** Timer end **/
+            if(running){
+                chronometer.stop();
+                running = false;
+            }
+            message.setCancelable(false);
+            message.setPositiveButton("NEXT", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();

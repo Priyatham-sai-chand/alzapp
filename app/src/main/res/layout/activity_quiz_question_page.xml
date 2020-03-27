@@ -83,7 +83,7 @@
         android:id="@+id/quiz_confirm_next"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:text="next"
+        android:text="confirm"
         android:background="@drawable/button_menu"
         android:layout_below="@id/quiz_radio_group"
         android:layout_marginTop="50dp"
