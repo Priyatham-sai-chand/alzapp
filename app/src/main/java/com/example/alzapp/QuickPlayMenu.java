@@ -32,7 +32,8 @@ public class QuickPlayMenu extends AppCompatActivity {
     private Button game4;
     private long jumble_elapsed_millis = 0;
     private String username;
-    private TextView username_text;
+    private TextView game_times;
+    private long tile_elapsed_millis = 0;
 
 
 
@@ -48,8 +49,8 @@ public class QuickPlayMenu extends AppCompatActivity {
 
         Intent intent = getIntent();
        username = intent.getStringExtra(login.EXTRA_TEXT);
-       //username_text = findViewById(R.id.username);
-       //username_text.setText("username : "+ username);
+       game_times = findViewById(R.id.game_times);
+        game_times.setText("username : "+ username);
 
         jumble.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,8 @@ public class QuickPlayMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuickPlayMenu.this,TileMatchingActivity.class);
-                startActivity(intent);
+                intent.putExtra("tile_elapsed_millis", tile_elapsed_millis);
+                startActivityForResult(intent, 2);
 
             }
         });
@@ -89,33 +91,9 @@ public class QuickPlayMenu extends AppCompatActivity {
             }
         });
 
-        if(jumble_elapsed_millis != 0) {
 
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean("success");
-                        if (success) {
-                            Intent intent = new Intent(QuickPlayMenu.this, UserAreaActivity.class);
-                            startActivity(intent);
-                        } else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(QuickPlayMenu.this);
-                            builder.setMessage("Register Failed")
-                                    .setNegativeButton("Retry", null)
-                                    .create()
-                                    .show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-            JumbleSender jumble_sender = new JumbleSender(username, jumble_elapsed_millis, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(QuickPlayMenu.this);
-            queue.add(jumble_sender);
-        }
+
+
 
 
 
@@ -127,7 +105,78 @@ public class QuickPlayMenu extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                jumble_elapsed_millis = data.getLongExtra("jumble_elapsed_millis", 0);
+                game_times.setText("username : "+ username+ " " + jumble_elapsed_millis);
+                if(jumble_elapsed_millis != 0) {
 
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
+                                    Intent intent = new Intent(QuickPlayMenu.this, UserAreaActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(QuickPlayMenu.this);
+                                    builder.setMessage("Register Failed")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+
+                    JumbleSender jumble_sender = new JumbleSender(username, jumble_elapsed_millis, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(QuickPlayMenu.this);
+                    queue.add(jumble_sender);
+
+                }
+
+
+            }
+            if (resultCode == RESULT_CANCELED) {
+
+
+            }
+        }
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+               tile_elapsed_millis = data.getLongExtra("tile_elapsed_millis", 0);
+                game_times.setText("username : "+ username+ " " + tile_elapsed_millis);
+
+                if(tile_elapsed_millis!= 0) {
+
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
+                                    Intent intent = new Intent(QuickPlayMenu.this, UserAreaActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(QuickPlayMenu.this);
+                                    builder.setMessage("Register Failed")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+
+                    TileSender tile_sender = new TileSender(username, tile_elapsed_millis, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(QuickPlayMenu.this);
+                    queue.add(tile_sender);
+
+                }
 
 
             }
