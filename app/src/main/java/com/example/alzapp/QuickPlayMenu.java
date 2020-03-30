@@ -49,7 +49,7 @@ public class QuickPlayMenu extends AppCompatActivity {
 
         Intent intent = getIntent();
        username = intent.getStringExtra(login.EXTRA_TEXT);
-       game_times = findViewById(R.id.game_times);
+       game_times = findViewById(R.id.username_text);
         game_times.setText("username : "+ username);
 
         jumble.setOnClickListener(new View.OnClickListener() {

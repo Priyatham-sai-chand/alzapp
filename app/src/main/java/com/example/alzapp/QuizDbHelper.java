@@ -66,7 +66,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q8);
         Question q9 = new Question("Total number of bones present in the human body is ", "204", "205", "206", 3);
         addQuestion(q9);
-        Question q10 = new Question("Novak Djokovic is a famous player associated with the game of ", "Basketball", "Tennis", "Cricket", 1);
+        Question q10 = new Question("Novak Djokovic is a famous player associated with the game of ", "Basketball", "Tennis", "Cricket", 2);
         addQuestion(q10);
 
     }
