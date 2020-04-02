@@ -47,13 +47,13 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/game4"
+        android:id="@+id/slidingTilesPuzzle"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/box_design"
-        android:text="Game 4"
+        android:text="Sliding tiles"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"

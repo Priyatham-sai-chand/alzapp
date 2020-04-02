@@ -14,6 +14,7 @@
         <activity android:name=".QuickQuizStart"></activity>
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".QuickPlayMenu" />
+        <activity android:name=".PuzzleMainActivity"/>
         <activity android:name=".TileMatchingActivity" />
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".JumbleActivity" />

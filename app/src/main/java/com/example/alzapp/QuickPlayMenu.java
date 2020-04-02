@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /*******
  Created on: 21/01/2020
@@ -29,7 +29,7 @@ public class QuickPlayMenu extends AppCompatActivity {
     private Button jumble;
     private Button tilematch;
     private Button quiz;
-    private Button game4;
+    private Button slidingTiles;
     private long jumble_elapsed_millis = 0;
     private String username;
     private TextView username_text;
@@ -45,6 +45,7 @@ public class QuickPlayMenu extends AppCompatActivity {
         jumble = findViewById(R.id.jumble);
         tilematch =  findViewById(R.id.tilematch);
         quiz = findViewById(R.id.quiz);
+        slidingTiles = findViewById(R.id.slidingTilesPuzzle);
 
         Intent intent = getIntent();
        username = intent.getStringExtra(login.EXTRA_TEXT);
@@ -79,6 +80,19 @@ public class QuickPlayMenu extends AppCompatActivity {
 
             }
         });
+
+        slidingTiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuickPlayMenu.this,PuzzleMainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
 
         Button back = (Button) findViewById(R.id.back);
 
