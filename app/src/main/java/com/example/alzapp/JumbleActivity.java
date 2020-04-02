@@ -46,8 +46,7 @@ public class JumbleActivity extends AppCompatActivity {
 
 
 
-            pauser =  findViewById(R.id.pause);
-            resumer = findViewById(R.id.resume);
+
             timer = findViewById(R.id.time);
             score_dis = findViewById(R.id.score);
             wordTv = findViewById(R.id.wordTv);
@@ -105,19 +104,7 @@ public class JumbleActivity extends AppCompatActivity {
             }
         });
 
-        pauser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pauseChronometer();
-            }
-        });
 
-        resumer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startChronometer();
-            }
-        });
 
 
 

@@ -1,11 +1,11 @@
 package com.example.alzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 /*******
  Created on: 21/01/2020
 
@@ -55,5 +55,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
     }
 }

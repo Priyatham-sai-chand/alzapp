@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".QuickQuizStart"></activity>
+        <activity android:name=".QuizQuestionPage" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".QuickPlayMenu" />
         <activity android:name=".PuzzleMainActivity"/>
@@ -20,8 +21,6 @@
         <activity android:name=".JumbleActivity" />
         <activity android:name=".login" />
         <activity android:name=".registration" />
-        <activity android:name=".QuizQuestionPage" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

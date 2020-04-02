@@ -11,11 +11,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class QuizQuestionPage extends AppCompatActivity {
 
@@ -168,21 +169,21 @@ public class QuizQuestionPage extends AppCompatActivity {
     }
 
     private void showSolution() {
-      /**  rb1.setTextColor(Color.RED);
-        rb2.setTextColor(Color.RED);
-        rb3.setTextColor(Color.RED);    **/
+        /**  rb1.setTextColor(Color.RED);
+         rb2.setTextColor(Color.RED);
+         rb3.setTextColor(Color.RED);    **/
 
         switch (currentQuestion.getAnswerNr()) {
             case 1:
-               // rb1.setTextColor(Color.GREEN);
+                // rb1.setTextColor(Color.GREEN);
                 textViewQuestion.setText("Answer 1 is correct");
                 break;
             case 2:
-               // rb2.setTextColor(Color.GREEN);
+                // rb2.setTextColor(Color.GREEN);
                 textViewQuestion.setText("Answer 2 is correct");
                 break;
             case 3:
-               // rb3.setTextColor(Color.GREEN);
+                // rb3.setTextColor(Color.GREEN);
                 textViewQuestion.setText("Answer 3 is correct");
                 break;
         }
@@ -207,7 +208,7 @@ public class QuizQuestionPage extends AppCompatActivity {
             finishQuiz();
         }
         else {
-        Toast.makeText(this,"Press back again to finish",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Press back again to finish",Toast.LENGTH_SHORT).show();
         }
 
         backPressedTime = System.currentTimeMillis();
