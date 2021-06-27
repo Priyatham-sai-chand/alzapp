@@ -83,14 +83,6 @@ public class QuickPlayMenu extends AppCompatActivity {
             }
         });
 
-        slidingTiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QuickPlayMenu.this,PuzzleMainActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
 
 

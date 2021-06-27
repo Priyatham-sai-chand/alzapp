@@ -16,6 +16,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+//import com.example.alzapp.Question;
+
+
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class QuizQuestionPage extends AppCompatActivity {
